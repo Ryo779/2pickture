@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> 2pickture </title>
+    <script type="text/javascript" src="cocos2d-js-v3.11.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/resource.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/title.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/game_building.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/gamenn_setumei.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/gameover.js" charset="UTF-8"></script>
+</head>
+<body>
+    <canvas id="gameCanvas" ></canvas>
+    <script type="text/javascript">
+          window.onload = function(){
+              cc.game.onStart = function(){
+                  // プログラムの画面全体を表示領域の画面に合わせる
+                   cc.view.adjustViewPort(true);
+                  //画面の縦横比をドットで指定する  ターゲットの解像度を指定し、ゲームキャンバスをブラウザのウインドサイズに合わせる
+                  cc.view.setDesignResolutionSize(1000, 800, cc.ResolutionPolicy.SHOW_ALL);
+                  // 表示領域がリサイズされた場合、自動的にプログラムの画面をリサイズさせる
+                  cc.view.resizeWithBrowserSize(true);
+                  cc.LoaderScene.preload(g_resources, function () {
+                       cc.director.runScene(new titleLayer());
+                  }, this);
+              };
+              cc.game.run("gameCanvas");
+          };
+    </script>
+</body>
+</html>
